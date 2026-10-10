@@ -1,0 +1,141 @@
+HIREFLOW AI - USER WORKFLOW GUIDE
+=================================
+
+WHAT THIS PROJECT DOES
+----------------------
+HireFlow AI is a workspace for keeping an internship or job search organized. It lets you record opportunities, track where each application stands, save deadlines and notes, manage resume files, and prepare for interviews. The dashboard gives you a quick summary so you can choose your next action.
+
+Think of it as a personal tracker: you enter the information, keep it up to date, and use the overview and preparation tools to help plan your search. It does not apply to jobs for you or guarantee that an employer will respond.
+
+GETTING STARTED
+---------------
+1. Open HireFlow AI using the web address provided by the person who runs the project.
+2. If you are new, choose the option to create an account. Enter your name, email address, and a password with at least 8 characters.
+3. After creating the account, sign in with that email and password.
+4. You will arrive at the Overview dashboard. Use the navigation menu to move between Overview, Applications, Calendar, Resume manager, AI assistant, My profile, and Settings.
+
+Your account is private to you. Sign out when you are finished on a shared computer. If you forget your password, the current app does not provide an automatic password reset; contact the person who manages the service.
+
+THE MAIN WORKFLOW
+-----------------
+A useful routine is:
+
+1. Find an internship or job you may want to apply for.
+2. Add it to Applications, even if you have not applied yet. It can start with the status "Saved".
+3. Add the job link, deadline, and job description while they are easy to find.
+4. Apply on the employer's own website. HireFlow AI records and organizes your search; it does not submit the employer's application.
+5. Return to the role in HireFlow AI and change its status as things happen.
+6. Check Overview and Calendar to see what needs attention next.
+7. Use notes or AI preparation to get ready for a conversation or follow-up.
+8. Update or close the record when you receive an offer or rejection.
+
+ADDING AN APPLICATION
+---------------------
+1. From Overview or Applications, select "Add application".
+2. Enter the company name and job role. These two fields are required.
+3. Add the application link. It must be a complete web address beginning with http:// or https://.
+4. Add the application deadline if one is shown. Dates help the dashboard and calendar highlight upcoming work.
+5. Choose the status that best describes the opportunity.
+6. Paste the job description if you want it available later, and add any notes you already have.
+7. Save the application.
+
+You do not need to fill every optional field immediately. You can edit the record later. Adding a link is useful because the role details page includes an "Open role" link to the employer's page.
+
+APPLICATION STATUSES
+--------------------
+Use the status that describes the latest real progress:
+
+- Saved: You are considering the role or preparing to apply.
+- Applied: You have submitted your application.
+- Assessment: The employer has asked you to complete a test or assessment.
+- Interview: You have reached an interview stage.
+- Offer: You received an offer.
+- Rejected: The employer declined your application, or the process ended without an offer.
+
+Update the status when something changes. This keeps the dashboard counts and interview list useful. Offer and Rejected are treated as finished stages for overdue-deadline reminders.
+
+FINDING AND UPDATING APPLICATIONS
+---------------------------------
+Open Applications to see your saved opportunities. You can:
+
+- Search for a company or role.
+- Filter the list by status.
+- Sort the list, including by deadline.
+- Move through pages when you have many entries.
+- Open a row to see its details.
+- Edit an entry when a deadline, status, or other detail changes.
+- Delete an entry you no longer want to track. Deleting removes it from your tracker.
+
+Inside an application, the Overview tab shows the company, role, status, deadline, link, and saved job description. The Notes tab lets you save notes to that application. For example, record the recruiter's name, what you learned about the team, questions to ask, or when you want to follow up.
+
+DASHBOARD: YOUR DAILY CHECK-IN
+------------------------------
+Overview is the best place to start when you sign in. It summarizes:
+
+- Total applications and counts in important statuses such as Applied, Interview, and Offer.
+- Deadlines coming up soon.
+- A chart showing how applications are spread across statuses.
+- Applications currently marked Interview.
+- Recently updated opportunities.
+- A warning when an unfinished application has passed its deadline.
+
+Use the counts and lists as shortcuts into Applications. A deadline is only as accurate as the date you entered, so update it if the employer changes it.
+
+CALENDAR: CHECK DATES
+---------------------
+Open Calendar to review dates recorded on your applications. Move between months and turn deadline items on or off. The calendar is based on information in your application records; it is not a separate calendar service. Add or correct a deadline on the application itself if a date is missing or wrong.
+
+RESUME MANAGER
+--------------
+Open Resume manager to keep resume files in your account:
+
+1. Choose a PDF or DOCX file no larger than 10 MB.
+2. The uploaded resume appears in your resume library.
+3. Choose one resume as the default if you have more than one.
+4. Preview a PDF or download a DOCX file when needed.
+5. Delete a resume only if you no longer want it stored in your library.
+
+The resume library is separate from the Documents tab inside an application. The current app does not record which resume you used for each job, so keep that history in your own notes if it matters to you.
+
+APPLICATION DETAILS: TASKS AND DOCUMENTS
+----------------------------------------
+The Tasks tab lets you add a temporary checklist item with a due date and priority, mark it complete, or remove it. At present these tasks exist only while that application page remains open. They are not saved to your account, and leaving or reloading the page clears them. Do not rely on this tab as a permanent reminder.
+
+The Documents tab also has a temporary file picker for that page. Files selected there are not uploaded or saved to your account. Use Resume manager for resumes you need to keep. The app does not currently connect a resume to a particular application.
+
+AI ASSISTANT AND AI INSIGHTS
+----------------------------
+The AI assistant page lets you ask questions about your search and request preparation help. Suggested questions include asking about deadlines, skills, interview practice, or a follow-up email. You can also open a specific application and use its AI insights to request job-description analysis, skill information, a resume comparison, interview questions, or a follow-up email draft.
+
+AI is optional and may not be enabled on the server you are using. If it is not configured, the app will show an error that the AI service is unavailable. Try again later or contact the service administrator. Treat AI output as a draft: check it for accuracy, make it sound like you, and never claim skills or experience you do not have. A resume comparison uses the default resume available to the AI service; the app does not save a resume-to-application history.
+
+The assistant conversation shown in the page is temporary from the user's point of view. Starting a new conversation or leaving the page clears the visible conversation. Do not use it as the only place to keep important information.
+
+PROFILE AND SETTINGS
+--------------------
+My profile lets you update your name, email address, career goal, preferred roles, and skills. Separate multiple preferred roles or skills with commas, then save the form.
+
+Settings lets you choose Light, Dark, or System appearance. That appearance choice is stored on the device you are using. You can also turn the application reminder preference on or off. The preference can be saved, but actual email or reminder delivery depends on a notification service being configured; do not assume that enabling it guarantees an email will be sent.
+
+A PRACTICAL EXAMPLE
+-------------------
+Suppose you find a Backend Developer internship at Northstar Labs:
+
+1. Add Northstar Labs and Backend Developer Intern to Applications.
+2. Paste the employer's application link and job description, set the deadline, and leave the status as Saved.
+3. Read the listing, prepare your materials, and apply on the employer's website.
+4. Change the HireFlow AI status to Applied and add a note with the submission date or any recruiter information.
+5. Check Overview or Calendar as the deadline approaches.
+6. If you are invited to interview, change the status to Interview and use AI preparation if it is available. Save important interview details in the application's Notes tab.
+7. When the process ends, change the status to Offer or Rejected so your tracker reflects the outcome.
+
+IMPORTANT LIMITS TO REMEMBER
+----------------------------
+- You must enter and maintain application details yourself; the app does not automatically discover jobs or submit applications.
+- AI features require the service administrator to configure an AI provider and may be unavailable.
+- Tasks and files added in an individual application's Tasks or Documents tab are temporary and are not saved to your account.
+- The Resume manager stores resume files, but the app does not record which resume was used for each application.
+- Reminder preferences do not by themselves guarantee that email notifications will be delivered.
+- Password reset is not currently configured.
+
+END OF GUIDE
