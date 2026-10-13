@@ -1,0 +1,6 @@
+.env
+uploads/
+target/
+*.log
+startup-test.log
+startup-test-err.log
