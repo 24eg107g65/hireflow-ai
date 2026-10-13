@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -36,6 +37,16 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     ResponseEntity<ApiError> notFound(ResourceNotFoundException exception, HttpServletRequest request) {
         return response(HttpStatus.NOT_FOUND, exception.getMessage(), request, List.of());
+    }
+
+    /**
+     * Handles requests for static resources that don't exist (e.g. GET /, /favicon.ico).
+     * This is expected for a pure REST API — logged at DEBUG level only, not ERROR.
+     */
+    @ExceptionHandler(NoResourceFoundException.class)
+    ResponseEntity<ApiError> noResource(NoResourceFoundException exception, HttpServletRequest request) {
+        log.debug("No static resource at path: {}", request.getRequestURI());
+        return response(HttpStatus.NOT_FOUND, "Not found.", request, List.of());
     }
 
     @ExceptionHandler(ForbiddenOperationException.class)
