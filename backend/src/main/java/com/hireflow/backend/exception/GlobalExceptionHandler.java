@@ -70,6 +70,12 @@ public class GlobalExceptionHandler {
         return response(HttpStatus.BAD_REQUEST, "Request body is missing or malformed.", request, List.of());
     }
 
+    @ExceptionHandler(IllegalStateException.class)
+    ResponseEntity<ApiError> illegalState(IllegalStateException exception, HttpServletRequest request) {
+        log.warn("Operation failed for {}: {}", request.getRequestURI(), exception.getMessage());
+        return response(HttpStatus.BAD_GATEWAY, exception.getMessage(), request, List.of());
+    }
+
     @ExceptionHandler(Exception.class)
     ResponseEntity<ApiError> unexpected(Exception exception, HttpServletRequest request) {
         log.error("Unhandled request failure for {}", request.getRequestURI(), exception);

@@ -49,6 +49,12 @@ public class AiController {
         return ai.followUpEmail(applicationId);
     }
 
+    @PostMapping("/diagnostics/ping")
+    @Operation(summary = "Perform a diagnostic test of the AI model connection")
+    public DiagnosticPingResponse ping() {
+        return ai.ping();
+    }
+
     @PostMapping("/chat/conversations")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create an AI chat conversation")

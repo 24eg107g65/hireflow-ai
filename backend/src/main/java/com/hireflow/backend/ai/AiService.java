@@ -64,10 +64,35 @@ public class AiService {
     }
 
     public String chat(String message, String ownedContext) {
-        return call(prompts.safety() + " Answer only from the authenticated student's reference data below. " +
-                "If the answer is not in the data, say you cannot determine it. Do not claim unsupported facts.",
-                "Student question:\n" + bounded(message) + "\nAuthenticated student's data:\n" + bounded(ownedContext),
-                String.class);
+        requireEnabled();
+        try {
+            return clients.getObject().prompt()
+                    .system(prompts.safety() + " Answer only from the authenticated student's reference data below. " +
+                            "If the answer is not in the data, say you cannot determine it. Do not claim unsupported facts.")
+                    .user("Student question:\n" + bounded(message) + "\nAuthenticated student's data:\n" + bounded(ownedContext))
+                    .call()
+                    .content();
+        } catch (AiUnavailableException exception) {
+            throw exception;
+        } catch (Exception exception) {
+            throw new IllegalStateException("The AI service could not complete this request: " + sanitizeError(exception), exception);
+        }
+    }
+
+    public DiagnosticPingResponse ping() {
+        requireEnabled();
+        try {
+            String result = clients.getObject().prompt()
+                    .user("Reply with exactly: GEMINI_OK")
+                    .call()
+                    .content();
+            return new DiagnosticPingResponse("OK", 200, result != null ? result.trim() : "GEMINI_OK");
+        } catch (AiUnavailableException exception) {
+            throw exception;
+        } catch (Exception exception) {
+            String sanitized = sanitizeError(exception);
+            return new DiagnosticPingResponse("ERROR", extractStatusCode(exception), sanitized);
+        }
     }
 
     public void requireEnabled() {
@@ -82,8 +107,48 @@ public class AiService {
         } catch (AiUnavailableException exception) {
             throw exception;
         } catch (Exception exception) {
-            throw new IllegalStateException("The AI service could not complete this request.", exception);
+            throw new IllegalStateException("The AI service could not complete this request: " + sanitizeError(exception), exception);
         }
+    }
+
+    private String sanitizeError(Throwable throwable) {
+        if (throwable == null) return "Unknown AI provider error.";
+        StringBuilder details = new StringBuilder();
+        Throwable current = throwable;
+        while (current != null) {
+            String msg = current.getMessage();
+            if (msg != null && !msg.isBlank()) {
+                if (details.length() > 0) details.append(": ");
+                details.append(msg);
+            }
+            current = current.getCause();
+        }
+        String message = details.toString();
+        if (message.isBlank()) {
+            return throwable.getClass().getSimpleName();
+        }
+        message = message.replaceAll("(?i)(key|token|secret)=[^&\\s]+", "$1=REDACTED");
+        message = message.replaceAll("AIza[0-9A-Za-z-_]{35}", "REDACTED_API_KEY");
+        if (message.contains("denied access") || message.contains("PERMISSION_DENIED")) {
+            return "Google Gemini API rejected access: Your project has been denied access (HTTP 403). A new API key from an active Google AI Studio project is required.";
+        }
+        if (message.contains("Quota exceeded") || message.contains("RESOURCE_EXHAUSTED")) {
+            return "Google Gemini API quota exceeded (HTTP 429): Quota limit reached for the configured model. Please check billing or quota in Google AI Studio.";
+        }
+        if (message.contains("is no longer available") || message.contains("not found for API version")) {
+            return "Google Gemini model error (HTTP 404): The configured model is not available for this API key. Update GEMINI_MODEL in configuration.";
+        }
+        return message.length() > 400 ? message.substring(0, 400) + "..." : message;
+    }
+
+    private int extractStatusCode(Throwable throwable) {
+        String msg = throwable.getMessage();
+        if (msg != null) {
+            if (msg.contains("403") || msg.contains("PERMISSION_DENIED")) return 403;
+            if (msg.contains("429") || msg.contains("RESOURCE_EXHAUSTED")) return 429;
+            if (msg.contains("404") || msg.contains("NOT_FOUND")) return 404;
+        }
+        return 502;
     }
 
     private static String bounded(String text) {
